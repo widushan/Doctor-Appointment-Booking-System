@@ -1,0 +1,31 @@
+npm create vite@latest
+
+cd frontend
+npm install
+npm install axios react-router-dom react-toastify
+
+npm run dev
+
+Add Tailwind support -->
+npm install -D tailwindcss@3 postcss autoprefixer
+npx tailwindcss init -p
+
+Update  -> tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+
+--> index.css -->
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
