@@ -5,14 +5,14 @@
 @tailwind utilities;
 
 
-*{
+* {
     font-family: Outfit;
 }
 
-.active hr{
+.active hr {
     @apply block
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
     @apply hidden
 }

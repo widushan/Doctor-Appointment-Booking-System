@@ -1,5 +1,5 @@
 import React from 'react'
-import {Routes, Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Doctors from './pages/Doctors'
 import About from './pages/About'
@@ -28,7 +28,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/my-profile' element={<MyProfile />} />
         <Route path='/my-appointments' element={<MyAppointments />} />
-        <Route path='/appointment/:doctorId' element={<Appointment />} />
+        <Route path='/appointment/:docId' element={<Appointment />} />
 
       </Routes>
       <Footer />
