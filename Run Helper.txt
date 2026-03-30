@@ -32,3 +32,54 @@ export default {
 
 
 
+
+
+
+
+
+
+----------------------------------------------------------------------------------
+
+cd backend
+
+npm init
+
+npm install express mongoose multer bcrypt cloudinary cors dotenv jsonwebtoken nodemon validator
+
+in package.json file -> edit
+type : "module",
+
+
+simply testing backend ->
+server.js file
+import express from "express";
+import cors from "cors";
+import 'dotenv/config';
+import mongoose from "mongoose";
+
+
+
+// app config
+const app = express();
+const port = process.env.PORT || 4000;
+
+
+// middleware
+app.use(cors());
+app.use(express.json());
+
+// api endpoints
+app.get("/", (req, res) => {
+    res.send(" API Working");
+});
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+
+
+run in terminal -> npm start
+
+
+
+
