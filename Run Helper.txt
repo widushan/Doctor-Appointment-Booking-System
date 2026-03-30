@@ -47,7 +47,9 @@ npm init
 npm install express mongoose multer bcrypt cloudinary cors dotenv jsonwebtoken nodemon validator
 
 in package.json file -> edit
-type : "module",
+"type" : "module",
+add ->
+"server": "nodemon server.js"
 
 
 simply testing backend ->
@@ -78,7 +80,7 @@ app.listen(port, () => {
 });
 
 
-run in terminal -> npm start
+run in terminal -> npm run server
 
 
 
