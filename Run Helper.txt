@@ -85,3 +85,18 @@ run in terminal -> npm run server
 
 
 
+
+------------------------------------------------------------------------------------------
+
+Admin Panel -->
+
+npm create vite@latest admin
+
+cd admin
+npm install
+npm install axios react-router-dom react-toastify
+npm run dev
+
+
+
+
