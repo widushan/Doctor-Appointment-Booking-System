@@ -98,5 +98,31 @@ npm install axios react-router-dom react-toastify
 npm run dev
 
 
+----------------------------------------------------------------------------------------------------
+
+Add Doctor Details -
+
+email -(doctorname)@demo.com
+password - (Fist name with first letter capital)@2026
+
+
+
+
+---------------------------------------------------------------------------------------------
+
+API testing
+
+POST -> http://localhost:4000/api/admin/login
+Body -> json{
+  "email" : "",
+  "password" : ""
+}
+from this we get the token
+
+POST -> http://localhost:4000/api/admin/all-doctors
+Headers -> atoken - xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+
 
 
