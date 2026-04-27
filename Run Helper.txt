@@ -113,16 +113,29 @@ password - (Fist name with first letter capital)@2026
 API testing
 
 POST -> http://localhost:4000/api/admin/login
-Body -> json{
-  "email" : "",
-  "password" : ""
+Body -> json
+{
+  "email" : "admin_email",
+  "password" : "admin_password"
 }
 from this we get the token
 
 POST -> http://localhost:4000/api/admin/all-doctors
 Headers -> atoken - xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
+POST -> http://localhost:4000/api/user/register
+Body -> json
+{
+  "name" : "pasindu",
+  "email" : "pasindu@gmail.com",
+  "password" : "12345678"
+}
 
-
+POST -> http://localhost:4000/api/user/login
+Body -> json
+{
+  "email" : "pasindu@gmail.com",
+  "password" : "12345678"
+}
 
 
