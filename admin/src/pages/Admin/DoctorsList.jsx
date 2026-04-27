@@ -3,7 +3,7 @@ import { AdminContext } from '../../context/AdminContext'
 
 const DoctorsList = () => {
 
-    const { doctors, aToken, getAllDoctors} = useContext(AdminContext)
+    const { doctors, aToken, getAllDoctors, changeAvailability } = useContext(AdminContext)
 
     useEffect(() => {
         if (aToken) {
@@ -21,11 +21,11 @@ const DoctorsList = () => {
                     doctors.map((item, index) => (
                         <div key={index} className='border border-indigo-200  rounded-xl max-w-56 overflow-hidden cursor-pointer group'>
                             <img src={item.image} alt={item.name} className='bg-indigo-50  group-hover:bg-primary transition-all duration-500' />
-                            <div>
-                                <p className='font-medium'>{item.name}</p>
-                                <p>{item.speciality}</p>
-                                <div>
-                                    <input type="checkbox" checked={item.available} />
+                            <div className='p-4'>
+                                <p className='text-neutral-800 text-lg font-medium'>{item.name}</p>
+                                <p className='text-zinc-600 text-sm'>{item.speciality}</p>
+                                <div className='mt-2 flex items-center gap-1 text-sm'>
+                                    <input onChange={() => changeAvailability(item._id)} type="checkbox" checked={item.available} />
                                     <p>Available</p>
                                 </div>
                             </div>
