@@ -91,6 +91,21 @@ const getProfile = async (req, res) => {
 
 
 
+// API to update user profile data
+const updateProfile = async (req, res) => {
+  try {
+    const {userId, name, phone, address, dob, gender } = req.body
+    const imageFile = req.file
+
+    if (condition) {
+    }
+
+  } catch (error) {
+    console.log(error)
+    res.json({ success: false, message: error.message })
+  }
+}
+
 
 
 export { registerUser, loginUser, getProfile }
