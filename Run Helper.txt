@@ -141,4 +141,18 @@ Body -> json
 Get the login token
 GET -> http://localhost:4000/api/user/get-profile
 
+Update profile
+POST -> http://localhost:4000/api/user/update-profile
+headers - token
+Body -> Form 
+name:
+phone:
+dob:
+gender:
+address:
+image-> file 
+
+
+
+
 
