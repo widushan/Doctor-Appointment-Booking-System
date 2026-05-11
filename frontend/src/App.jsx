@@ -12,10 +12,14 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useContext } from 'react'
+import { AppContext } from './context/AppContext'
 
 
 function App() {
 
+
+  const {uToken} = useContext(AppContext)
 
   return (
 
