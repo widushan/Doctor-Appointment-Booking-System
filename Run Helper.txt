@@ -152,6 +152,11 @@ gender:
 address:
 image-> file 
 
+Verify paymennt
+POST -> http://localhost:4000/api/user/verify-payment
+Body -> json
+{"payment_order_id" : ""}
+headers - token
 
 
 

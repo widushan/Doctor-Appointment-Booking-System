@@ -5,6 +5,9 @@ import jwt from 'jsonwebtoken'
 import { v2 as cloudinary } from 'cloudinary'
 import doctorModel from '../models/doctorModel.js'
 import appointmentModel from '../models/appointmentModel.js'
+import Stripe from 'stripe'
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 
 // API to register user
@@ -244,4 +247,68 @@ const cancelAppointment = async (req, res) => {
 }
 
 
-export { registerUser, loginUser, getProfile, updateProfile, bookAppointment, listAppointment, cancelAppointment }
+// API to make payment for appointment
+const makePayment = async (req, res) => {
+
+    try {
+        const { appointmentId } = req.body
+
+        const appointmentData = await appointmentModel.findById(appointmentId)
+
+        // verify appointment user
+        if (!appointmentData || appointmentData.cancelled) {
+            return res.json({ success: false, message: 'Appointment Cancelled or not found' })
+        }
+
+        // Create a Stripe Payment Intent
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: appointmentData.amount * 100, // Stripe requires amount in cents
+            currency: process.env.CURRENCY.toLowerCase(),
+            metadata: {
+                appointmentId: appointmentId.toString()
+            }
+        })
+
+        res.json({
+            success: true,
+            clientSecret: paymentIntent.client_secret,
+            paymentIntentId: paymentIntent.id,
+            amount: appointmentData.amount,
+            currency: process.env.CURRENCY
+        })
+
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
+}
+
+
+// API to verify payment
+const verifyPayment = async (req, res) => {
+    try {
+        const { paymentIntentId } = req.body
+
+        // Retrieve the payment intent from Stripe
+        const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId)
+
+        if (paymentIntent.status === 'succeeded') {
+            // Update appointment as paid
+            await appointmentModel.findByIdAndUpdate(
+                paymentIntent.metadata.appointmentId,
+                { payment: true }
+            )
+            res.json({ success: true, message: 'Payment successful' })
+        } else if (paymentIntent.status === 'processing') {
+            res.json({ success: false, message: 'Payment is processing' })
+        } else {
+            res.json({ success: false, message: 'Payment failed' })
+        }
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
+}
+
+
+export { registerUser, loginUser, getProfile, updateProfile, bookAppointment, listAppointment, cancelAppointment, makePayment, verifyPayment }

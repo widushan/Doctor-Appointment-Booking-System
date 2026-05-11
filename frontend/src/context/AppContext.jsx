@@ -11,6 +11,7 @@ const AppContextProvider = (props) => {
     const currencySymbol = 'Rs. '
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL
+    const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY
 
     const [doctors, setDoctors] = useState([])
 
@@ -54,6 +55,7 @@ const AppContextProvider = (props) => {
         currencySymbol,
         token, setToken,
         backendUrl,
+        stripePublicKey,
         userData, setUserData,
         loadUserProfileData
     }
