@@ -158,6 +158,14 @@ Body -> json
 {"payment_order_id" : ""}
 headers - token
 
+doctor login
+POST -> http://localhost:4000/api/doctor/login
+Body -> json
+{
+  "email":"richard@demo.com",
+  "password":"Richard@2026"
+}
+
 
 
 
