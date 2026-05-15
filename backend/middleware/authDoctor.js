@@ -13,7 +13,10 @@ const authDoctor = async (req, res, next) => {
 
         const token_decode = jwt.verify(dtoken, process.env.JWT_SECRET)
 
-        req.body.docId = token_decode.doctorId
+        const docId = token_decode.id || token_decode.doctorId
+        req.docId = docId
+        req.body = req.body || {}
+        req.body.docId = docId
 
         next()
 
